@@ -110,6 +110,6 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 3.2.12)
-  safe_attributes
+  safe_attributes (= 1.0.9)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
