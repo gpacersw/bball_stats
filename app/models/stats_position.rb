@@ -1,3 +1,5 @@
+
+## GG, TECH_DEBT - depending on future intended features, this could be pulled into StatsPosition class.  Just depends on client side data being displayed.  Right now, these are the only attributes for the demo
 class StatsHitter
   attr_accessor :player_id, :avg, :hr, :rbi, :runs, :sb, :ops
 end
@@ -6,8 +8,8 @@ class StatsPosition < ActiveRecord::Base
   belongs_to :player
   belongs_to :team
   belongs_to :season
-  ## added player_id explicitly b/c of mass asignment error 
-  attr_accessible :at_bats, :caught_stealing, :doubles, :errors, :games, :games_started, :hit_by_pitch, :hits, :home_runs, :pb, :rbi, :runs, :sacrifice_flies, :sacrifice_hits, :steals, :struck_out, :triples, :walks, :player_id
+  ## GG, added player_id at end explicitly b/c of mass asignment error / security
+  attr_accessible :at_bats, :caught_stealing, :doubles, :fielding_errors, :games, :games_started, :hit_by_pitch, :hits, :home_runs, :pb, :rbi, :runs, :sacrifice_flies, :sacrifice_hits, :steals, :struck_out, :triples, :walks, :player_id
 
   ## 
   ## read DB for this player stats, calculate

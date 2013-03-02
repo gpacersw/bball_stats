@@ -17,7 +17,7 @@ class CreateStatsPositions < ActiveRecord::Migration
       t.integer :caught_stealing
       t.integer :sacrifice_hits
       t.integer :sacrifice_flies
-      t.integer :errors
+      t.integer :fielding_errors
       t.integer :pb
       t.integer :walks
       t.integer :struck_out

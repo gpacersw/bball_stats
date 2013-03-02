@@ -6,7 +6,9 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem "safe_attributes", "~> 1.0.9"
+## removed this GEM.  Was used to overide the use of : errors, but this is an active record method - did not need to be backwards compatible with older rails version
+#gem "safe_attributes", "~> 1.0.9"
+
 
 # Gems used only for assets and not required
 # in production environments by default.

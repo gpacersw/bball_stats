@@ -3,5 +3,5 @@ class Player < ActiveRecord::Base
   belongs_to :division
   belongs_to :league
   belongs_to :season
-  attr_accessible :given_name, :position, :surname, :throws, :team_id
+  attr_accessible :given_name, :position, :surname, :pitch_arm, :team_id
 end

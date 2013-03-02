@@ -11,11 +11,13 @@ ENV['RAILS_ENV'] = "development"
 require '../config/environment.rb'
 
 $stdout.sync = true
+
+## GG, TECH_DEBT - this flag should be pulled into command line options
 debug = false
 
 
 
-## class to count data and compare to be certain all data is read into DB
+## GG, class to count data and compare to be certain all data is read into DB
 class StatsValidate
   attr_accessor :season, :league, :division, :team, :player, :stats_pos, :stats_pitcher
 
@@ -98,15 +100,18 @@ puts "stats filename: #{sfile_name}"
   doc = Nokogiri::XML(f)
 
   ## validate XML
+  ## GG, TECH_DEBT - would be best to quickly validate XML on file open
 
 
   ## count data for later verify
+  ## GG, TECH_DEBT - could be refactored to be more efficient at some point
   stats_val_start = StatsValidate.new
   doc.xpath("//SEASON").each do |node| 
     stats_val_start.season += 1  if !node.at("YEAR").text.nil?
     node.xpath("./LEAGUE").each do |league_node|
       stats_val_start.league += 1  if !node.at("LEAGUE_NAME").text.nil?
       league_node.xpath("./DIVISION").each do |division_node|
+        ## GG, TECH_DEBT - divisions repeat across leagues, so they are double counted.  will need to fix
         stats_val_start.division += 1  if !node.at("DIVISION_NAME").text.nil?
         division_node.xpath("./TEAM").each do |team_node|
           stats_val_start.team += 1  if !node.at("TEAM_NAME").text.nil?
@@ -127,6 +132,7 @@ puts "stats filename: #{sfile_name}"
   puts stats_val_start.dump
 
 
+  ## GG, TECH_DEBT - could be refactored to be more efficient at some point
   stats_val_parse = StatsValidate.new
   doc.xpath("//SEASON").each do |node| 
     season = Season.find_or_create_by_year(:year =>  node.at("YEAR").text)
@@ -173,7 +179,7 @@ puts "stats filename: #{sfile_name}"
                                                                      :given_name  => player_node.at('GIVEN_NAME').text,
                                                                      :position    => player_node.at('POSITION').text)
             if !player_node.at('THROWS').nil?
-              player.throws = player_node.at('THROWS').text
+              player.pitch_arm = player_node.at('THROWS').text
             end
             player.season_id = season.id
             player.league_id = league.id
@@ -225,16 +231,20 @@ puts "stats filename: #{sfile_name}"
                                                     :caught_stealing   => player_node.at('CAUGHT_STEALING').text,
                                                     :sacrifice_hits    => player_node.at('SACRIFICE_HITS').text,
                                                     :sacrifice_flies   => player_node.at('SACRIFICE_FLIES').text,
-                                                    :errors            => player_node.at('ERRORS').text,
+                                                    :fielding_errors   => player_node.at('ERRORS').text,
                                                     :pb                => player_node.at('PB').text,
                                                     :walks             => player_node.at('WALKS').text,
                                                     :struck_out        => player_node.at('STRUCK_OUT').text,
                                                     :hit_by_pitch      => player_node.at('HIT_BY_PITCH').text)
               stats_pos.season_id = season.id
               stats_pos.team_id   = team.id
+
+              ## GG, TECH_DEBT - have a count mismatch when this runs, one less pitcher in the DB, 
+              ##   likely due to a pither also being a hitter (national league).  Added error trapping to find the issue, would need to come back to this
               if !stats_pos.save
                 puts "ERROR SAVING !! - " + e
               else
+                ## save success
                 stats_val_parse.stats_pos += 1 
               end
             end ## stats_ position / pitcher
@@ -243,6 +253,7 @@ puts "stats filename: #{sfile_name}"
           end # player
           puts 
           puts "=================================================================="
+          ## uncomment break for debug, shortens the amount the file parses
           #break
         end # team
       end # division
@@ -259,6 +270,7 @@ stats_val_db.player = Player.all.count
 stats_val_db.stats_pos = StatsPosition.all.count
 stats_val_db.stats_pitcher = StatsPitcher.all.count
 
+## GG, TECH_DEBT - divisions repeat across leagues, so they are double counted.  will need to fix
 print "START:" 
 stats_val_start.dump
 print "PARSE:"

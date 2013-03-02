@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20130301232412) do
     t.string   "surname"
     t.string   "given_name"
     t.string   "position"
-    t.string   "throws"
+    t.string   "pitch_arm"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20130301232412) do
     t.integer  "caught_stealing"
     t.integer  "sacrifice_hits"
     t.integer  "sacrifice_flies"
-    t.integer  "errors"
+    t.integer  "fielding_errors"
     t.integer  "pb"
     t.integer  "walks"
     t.integer  "struck_out"

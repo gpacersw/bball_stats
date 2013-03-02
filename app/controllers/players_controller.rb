@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
     ## filter out pitchers for now
     # @players = Player.all
 
+    ## GG, TECH_DEBT - this is demo logic, needs to be cleaned up
     ## if year, get season_id to filter players by
     season = nil
     if !params[:year].nil?
@@ -13,7 +14,7 @@ class PlayersController < ApplicationController
     end
 
     if !season.nil?
-      @players = Player.find_all_by_throws_and_season_id(nil, season.id)
+      @players = Player.find_all_by_pitch_arm_and_season_id(nil, season.id)
       
       @stats_hitters = []
       @players.each do |p|
@@ -36,7 +37,7 @@ class PlayersController < ApplicationController
 
 
   def team_view
-    @players = Player.find_all_by_team_id_and_throws(params[:team_id], nil)
+    @players = Player.find_all_by_team_id_and_pitch_arm(params[:team_id], nil)
     @team_name = @players[0].team.team_name
 
     respond_to do |format|

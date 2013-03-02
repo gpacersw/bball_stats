@@ -8,7 +8,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :surname
       t.string :given_name
       t.string :position
-      t.string :throws
+      t.string :pitch_arm
 
       t.timestamps
     end
