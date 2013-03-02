@@ -1,4 +1,25 @@
 BballStats::Application.routes.draw do
+  resources :stats_pitchers
+
+
+  resources :stats_positions
+
+
+  resources :players
+  match 'team_players/:team_id', :to => 'players#team_view'
+  match 'all_players/:year', :to => 'players#index'  
+
+
+
+  resources :teams
+
+
+  resources :divisions
+
+
+  resources :leagues
+
+
   resources :seasons
 
 
@@ -52,6 +73,7 @@ BballStats::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+  root :to => 'teams#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  league: 
+  season: 
+  division_name: MyString
+
+two:
+  league: 
+  season: 
+  division_name: MyString

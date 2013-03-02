@@ -1,0 +1,2 @@
+module StatsPositionsHelper
+end

@@ -1,0 +1,63 @@
+<h1>Listing stats_positions</h1>
+
+<table>
+  <tr>
+    <th>Player</th>
+    <th>Team</th>
+    <th>Season</th>
+    <th>Games</th>
+    <th>Games started</th>
+    <th>At bats</th>
+    <th>Runs</th>
+    <th>Hits</th>
+    <th>Doubles</th>
+    <th>Triples</th>
+    <th>Home runs</th>
+    <th>Rbi</th>
+    <th>Steals</th>
+    <th>Caught stealing</th>
+    <th>Sacrifice hits</th>
+    <th>Sacrifice flies</th>
+    <th>Errors</th>
+    <th>Pb</th>
+    <th>Walks</th>
+    <th>Struck out</th>
+    <th>Hit by pitch</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stats_positions.each do |stats_position| %>
+  <tr>
+    <td><%= stats_position.player %></td>
+    <td><%= stats_position.team %></td>
+    <td><%= stats_position.season %></td>
+    <td><%= stats_position.games %></td>
+    <td><%= stats_position.games_started %></td>
+    <td><%= stats_position.at_bats %></td>
+    <td><%= stats_position.runs %></td>
+    <td><%= stats_position.hits %></td>
+    <td><%= stats_position.doubles %></td>
+    <td><%= stats_position.triples %></td>
+    <td><%= stats_position.home_runs %></td>
+    <td><%= stats_position.rbi %></td>
+    <td><%= stats_position.steals %></td>
+    <td><%= stats_position.caught_stealing %></td>
+    <td><%= stats_position.sacrifice_hits %></td>
+    <td><%= stats_position.sacrifice_flies %></td>
+    <td><%= stats_position.errors %></td>
+    <td><%= stats_position.pb %></td>
+    <td><%= stats_position.walks %></td>
+    <td><%= stats_position.struck_out %></td>
+    <td><%= stats_position.hit_by_pitch %></td>
+    <td><%= link_to 'Show', stats_position %></td>
+    <td><%= link_to 'Edit', edit_stats_position_path(stats_position) %></td>
+    <td><%= link_to 'Destroy', stats_position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stats position', new_stats_position_path %>

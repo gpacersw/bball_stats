@@ -1,0 +1,61 @@
+<h1>Listing stats_pitchers</h1>
+
+<table>
+  <tr>
+    <th>Player</th>
+    <th>Team</th>
+    <th>Season</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Saves</th>
+    <th>Games</th>
+    <th>Games started</th>
+    <th>Complete games</th>
+    <th>Shut outs</th>
+    <th>Era</th>
+    <th>Innings</th>
+    <th>Home runs</th>
+    <th>Runs</th>
+    <th>Earned runs</th>
+    <th>Hit batter</th>
+    <th>Wild pitches</th>
+    <th>Balk</th>
+    <th>Walked batter</th>
+    <th>Struck out batter</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stats_pitchers.each do |stats_pitcher| %>
+  <tr>
+    <td><%= stats_pitcher.player %></td>
+    <td><%= stats_pitcher.team %></td>
+    <td><%= stats_pitcher.season %></td>
+    <td><%= stats_pitcher.wins %></td>
+    <td><%= stats_pitcher.losses %></td>
+    <td><%= stats_pitcher.saves %></td>
+    <td><%= stats_pitcher.games %></td>
+    <td><%= stats_pitcher.games_started %></td>
+    <td><%= stats_pitcher.complete_games %></td>
+    <td><%= stats_pitcher.shut_outs %></td>
+    <td><%= stats_pitcher.era %></td>
+    <td><%= stats_pitcher.innings %></td>
+    <td><%= stats_pitcher.home_runs %></td>
+    <td><%= stats_pitcher.runs %></td>
+    <td><%= stats_pitcher.earned_runs %></td>
+    <td><%= stats_pitcher.hit_batter %></td>
+    <td><%= stats_pitcher.wild_pitches %></td>
+    <td><%= stats_pitcher.balk %></td>
+    <td><%= stats_pitcher.walked_batter %></td>
+    <td><%= stats_pitcher.struck_out_batter %></td>
+    <td><%= link_to 'Show', stats_pitcher %></td>
+    <td><%= link_to 'Edit', edit_stats_pitcher_path(stats_pitcher) %></td>
+    <td><%= link_to 'Destroy', stats_pitcher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stats pitcher', new_stats_pitcher_path %>

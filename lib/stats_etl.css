@@ -1,0 +1,163 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
+require 'optparse'
+#require 'Date'
+require 'nokogiri'
+require 'open-uri'
+require 'active_record'
+
+ENV['RAILS_ENV'] = "development"
+require '../config/environment.rb'
+
+$stdout.sync = true
+debug = false
+
+
+
+
+###########################
+###########################
+###########################
+###
+### Main start 
+
+
+
+options = {}
+sfile_name = ""
+
+optparse = OptionParser.new do |opts|
+  opts.separator ""
+
+  # Set a banner, displayed at the top
+  # of the help screen.
+  opts.banner = "Usage: stats_parser.rb [options] ..."
+ 
+  options[:statsFname] = false
+  opts.on( '-f', '--fname NAME', 'stats filename must be set !!' ) do |arg|
+    options[:statsFname] = true
+    sfile_name = arg
+    puts "statsFname filename +++#{sfile_name}+++"
+  end
+
+  # assumed to have this option.
+  opts.on( '-h', '--help', 'Display this screen' ) do
+    puts opts
+    exit
+  end
+
+end
+
+
+
+begin
+  #l = optparse.parse(ARGV)
+  optparse.parse!
+
+  if options.has_value?(true) == false
+    ## no args provided, so dump help
+    ARGV << "-h"
+    optparse.parse(ARGV)
+    exit
+  end
+
+rescue OptionParser::ParseError
+  $stderr.print "Error: " + $! + "\n"
+  exit
+end
+
+#########################
+#########################
+
+##################################
+##################################
+if options[:statsFname] == false
+  puts "stats filename must be set!"
+  exit
+end
+
+
+puts "stats filename: #{sfile_name}"
+
+  f = File.open( sfile_name )
+  doc = Nokogiri::HTML(f)
+  # puts doc.inspect
+
+  doc.css('season').each do |node1| 
+    children0 = node1.children
+    season = Season.find_or_create_by_year(:year => children0.css('year').inner_text)
+    puts season.inspect if debug
+
+    doc.css('league').each do |node2|
+      children2 = node2.children
+      league = League.find_or_create_by_league_name(:league_name => children2.css('league_name').inner_text)
+
+      league.season_id = season.id
+      league.save
+      puts league.inspect if debug
+
+      doc.css('division').each do |node3|
+        children3 = node3.children
+        division = Division.find_or_create_by_division_name(:division_name => children3.css('division_name').inner_text)
+
+        division.season_id = season.id
+        division.league_id = league.id
+        division.save
+        puts division.inspect if debug
+      
+        doc.css('team').each do |node4|
+          children4 = node4.children
+          team = Team.find_or_create_by_team_name(:team_name   => children4.css('team_name').inner_text,
+                                                  :team_city   => children4.css('team_city').inner_text)
+
+          team.season_id = season.id
+          team.league_id = league.id
+          team.division_id = division.id
+          team.save
+          puts team.inspect if debug 
+          print "t"
+
+          doc.css('player').each do |node5|
+            children = node5.children
+            print children.css('surname').inner_text + ", "
+=begin
+            player = Player.find_or_create_by_surname_and_given_name(
+                                                    :surname           => children.css('surname').inner_text,
+                                                    :given_name        => children.css('given_name').inner_text,
+                                                    :position          => children.css('position').inner_text,
+                                                    :games             => children.css('games').inner_text,
+                                                    :games_started     => children.css('games_started').inner_text,
+                                                    :at_bats           => children.css('at_bats').inner_text,
+                                                    :runs              => children.css('runs').inner_text,
+                                                    :hits              => children.css('hits').inner_text,
+                                                    :doubles           => children.css('doubles').inner_text,
+                                                    :triples           => children.css('triples').inner_text,
+                                                    :home_runs         => children.css('home_runs').inner_text,
+                                                    :rbi               => children.css('rbi').inner_text,
+                                                    :steals            => children.css('steals').inner_text,
+                                                    :caught_stealing   => children.css('caught_stealing').inner_text,
+                                                    :sacrifice_hits    => children.css('sacrifice_hits').inner_text,
+                                                    :sacrifice_flies   => children.css('sacrifice_hits').inner_text,
+                                                    :errors            => children.css('errors').inner_text,
+                                                    :pb                => children.css('pb').inner_text,
+                                                    :walks             => children.css('waks').inner_text,
+                                                    :struck_out        => children.css('player_city').inner_text,
+                                                    :hit_by_pitch      => children.css('hit_by_pitch').inner_text)
+            player.season_id = season.id
+            player.league_id = league.id
+            player.division_id = division.id
+            player.team_id = team.id
+            player.save
+            puts player.inspect
+=end
+
+          
+          end # player
+          puts 
+          puts "=================================================================="
+        end # team
+      end # division
+    end # league
+  end # season
+

@@ -1,0 +1,105 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Player:</b>
+  <%= @stats_pitcher.player %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%= @stats_pitcher.team %>
+</p>
+
+<p>
+  <b>Season:</b>
+  <%= @stats_pitcher.season %>
+</p>
+
+<p>
+  <b>Wins:</b>
+  <%= @stats_pitcher.wins %>
+</p>
+
+<p>
+  <b>Losses:</b>
+  <%= @stats_pitcher.losses %>
+</p>
+
+<p>
+  <b>Saves:</b>
+  <%= @stats_pitcher.saves %>
+</p>
+
+<p>
+  <b>Games:</b>
+  <%= @stats_pitcher.games %>
+</p>
+
+<p>
+  <b>Games started:</b>
+  <%= @stats_pitcher.games_started %>
+</p>
+
+<p>
+  <b>Complete games:</b>
+  <%= @stats_pitcher.complete_games %>
+</p>
+
+<p>
+  <b>Shut outs:</b>
+  <%= @stats_pitcher.shut_outs %>
+</p>
+
+<p>
+  <b>Era:</b>
+  <%= @stats_pitcher.era %>
+</p>
+
+<p>
+  <b>Innings:</b>
+  <%= @stats_pitcher.innings %>
+</p>
+
+<p>
+  <b>Home runs:</b>
+  <%= @stats_pitcher.home_runs %>
+</p>
+
+<p>
+  <b>Runs:</b>
+  <%= @stats_pitcher.runs %>
+</p>
+
+<p>
+  <b>Earned runs:</b>
+  <%= @stats_pitcher.earned_runs %>
+</p>
+
+<p>
+  <b>Hit batter:</b>
+  <%= @stats_pitcher.hit_batter %>
+</p>
+
+<p>
+  <b>Wild pitches:</b>
+  <%= @stats_pitcher.wild_pitches %>
+</p>
+
+<p>
+  <b>Balk:</b>
+  <%= @stats_pitcher.balk %>
+</p>
+
+<p>
+  <b>Walked batter:</b>
+  <%= @stats_pitcher.walked_batter %>
+</p>
+
+<p>
+  <b>Struck out batter:</b>
+  <%= @stats_pitcher.struck_out_batter %>
+</p>
+
+
+<%= link_to 'Edit', edit_stats_pitcher_path(@stats_pitcher) %> |
+<%= link_to 'Back', stats_pitchers_path %>

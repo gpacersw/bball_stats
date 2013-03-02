@@ -1,0 +1,101 @@
+<%= form_for(@stats_position) do |f| %>
+  <% if @stats_position.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stats_position.errors.count, "error") %> prohibited this stats_position from being saved:</h2>
+
+      <ul>
+      <% @stats_position.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :player %><br />
+    <%= f.text_field :player %>
+  </div>
+  <div class="field">
+    <%= f.label :team %><br />
+    <%= f.text_field :team %>
+  </div>
+  <div class="field">
+    <%= f.label :season %><br />
+    <%= f.text_field :season %>
+  </div>
+  <div class="field">
+    <%= f.label :games %><br />
+    <%= f.number_field :games %>
+  </div>
+  <div class="field">
+    <%= f.label :games_started %><br />
+    <%= f.number_field :games_started %>
+  </div>
+  <div class="field">
+    <%= f.label :at_bats %><br />
+    <%= f.number_field :at_bats %>
+  </div>
+  <div class="field">
+    <%= f.label :runs %><br />
+    <%= f.number_field :runs %>
+  </div>
+  <div class="field">
+    <%= f.label :hits %><br />
+    <%= f.number_field :hits %>
+  </div>
+  <div class="field">
+    <%= f.label :doubles %><br />
+    <%= f.number_field :doubles %>
+  </div>
+  <div class="field">
+    <%= f.label :triples %><br />
+    <%= f.number_field :triples %>
+  </div>
+  <div class="field">
+    <%= f.label :home_runs %><br />
+    <%= f.number_field :home_runs %>
+  </div>
+  <div class="field">
+    <%= f.label :rbi %><br />
+    <%= f.number_field :rbi %>
+  </div>
+  <div class="field">
+    <%= f.label :steals %><br />
+    <%= f.number_field :steals %>
+  </div>
+  <div class="field">
+    <%= f.label :caught_stealing %><br />
+    <%= f.number_field :caught_stealing %>
+  </div>
+  <div class="field">
+    <%= f.label :sacrifice_hits %><br />
+    <%= f.number_field :sacrifice_hits %>
+  </div>
+  <div class="field">
+    <%= f.label :sacrifice_flies %><br />
+    <%= f.number_field :sacrifice_flies %>
+  </div>
+  <div class="field">
+    <%= f.label :errors %><br />
+    <%= f.number_field :errors %>
+  </div>
+  <div class="field">
+    <%= f.label :pb %><br />
+    <%= f.number_field :pb %>
+  </div>
+  <div class="field">
+    <%= f.label :walks %><br />
+    <%= f.number_field :walks %>
+  </div>
+  <div class="field">
+    <%= f.label :struck_out %><br />
+    <%= f.number_field :struck_out %>
+  </div>
+  <div class="field">
+    <%= f.label :hit_by_pitch %><br />
+    <%= f.number_field :hit_by_pitch %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

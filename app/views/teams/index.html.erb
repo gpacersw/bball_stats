@@ -1,0 +1,28 @@
+<h1>MLB Teams</h1>
+
+<table>
+  <tr>
+    <th>Season</th>
+    <th>League</th>
+    <th>Division</th>
+    <th>Team city</th>
+    <th>Team name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teams.each do |team| %>
+  <tr>
+    <td><%= team.season.year %></td>
+    <td><%= team.league.league_name %></td>
+    <td><%= team.division.division_name %></td>
+    <td><%= team.team_city %></td>
+    <td><%= team.team_name %></td>
+    <td><%= link_to 'Show', "team_players/#{team.id}" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

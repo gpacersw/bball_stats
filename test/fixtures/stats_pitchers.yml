@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player: 
+  team: 
+  season: 
+  wins: 1
+  losses: 1
+  saves: 1
+  games: 1
+  games_started: 1
+  complete_games: 1
+  shut_outs: 1
+  era: 1.5
+  innings: 1
+  home_runs: 1
+  runs: 1
+  earned_runs: 1
+  hit_batter: 1
+  wild_pitches: 1
+  balk: 1
+  walked_batter: 1
+  struck_out_batter: 1
+
+two:
+  player: 
+  team: 
+  season: 
+  wins: 1
+  losses: 1
+  saves: 1
+  games: 1
+  games_started: 1
+  complete_games: 1
+  shut_outs: 1
+  era: 1.5
+  innings: 1
+  home_runs: 1
+  runs: 1
+  earned_runs: 1
+  hit_batter: 1
+  wild_pitches: 1
+  balk: 1
+  walked_batter: 1
+  struck_out_batter: 1

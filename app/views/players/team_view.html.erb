@@ -1,0 +1,24 @@
+<h1> <%= @team_name %></h1>
+
+<table>
+  <tr>
+    <th>Count</th>
+    <th>Surname</th>
+    <th>Given name</th>
+    <th>Position</th>
+    <th></th>
+  </tr>
+
+<% i = 0 %>
+<% @players.each do |player| %>
+  <tr>
+    <td><%= i += 1 %> </td>
+    <td><%= player.surname %></td>
+    <td><%= player.given_name %></td>
+    <td><%= player.position %></td>
+    <td><%= link_to 'Show', player %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
