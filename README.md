@@ -14,4 +14,5 @@ A few design choices
 - TDD - Did not have time to add factories and tests.  Would be first on the list on next sprint
 - tablesorter JS is a great lib, very straight forward for pulling over all data at once.
 
-In summary, the short, time boxed effort made for stark design choices, however I feel the results appear to meet the requirements  
+In summary, the short, time boxed effort made for stark design choices, more improvements possible
+
